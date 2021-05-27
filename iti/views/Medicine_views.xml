@@ -1,0 +1,79 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="medicine_list">
+      <field name="name">medicine_list</field>
+      <field name="model">medicine</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="price"/>
+          <field name="description"/>
+          <field name="manufacturer"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+       <record model="ir.ui.view" id="medicine_form">
+      <field name="name">medicine_form</field>
+      <field name="model">medicine</field>
+      <field name="arch" type="xml">
+        <form>
+              <group>
+                <group>
+                    <field name="name"/>
+                    <field name="price"/>
+                    <field name="description"/>
+                    <field name="manufacturer"/>
+                </group>
+              </group>
+        </form>
+      </field>
+    </record>
+
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="medicine_action_window">
+      <field name="name">medicine</field>
+      <field name="res_model">medicine</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="iti.action_server">
+      <field name="name">iti server</field>
+      <field name="model_id" ref="model_iti_iti"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="medicine" id="medicine_menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="medicine" id="medicine_menu_1" parent="medicine_menu_root"/>
+    
+
+    <!-- actions -->
+
+    <menuitem name="List" id="medicine_menu_1_list" parent="medicine_menu_1"
+              action="medicine_action_window"/>
+
+
+  </data>
+</odoo>
