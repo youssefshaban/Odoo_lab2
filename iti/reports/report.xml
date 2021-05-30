@@ -1,0 +1,33 @@
+  <odoo>
+  <data>
+    <record id="orderReport" model="ir.actions.report">
+        <field name="name">orders</field>
+        <field name="model">orders</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">iti.orders_report_custom</field>
+        <field name="report_file">iti.orders_report_custom</field>
+        <field name="attachment_use" eval="False"/>
+        <field name="binding_model_id" ref="model_orders"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="orders_report_custom">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Order  #<span t-field="o.id"/></h2>
+                    <p>customer name :  <span t-field="o.name"/></p>
+                    <t t-foreach="o.order_lines" t-as="line">
+                        <p>
+                           <span t-field="line.name"/>  <span t-field="line.sub_total"/>
+                        </p>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+
+</data>
+</odoo>

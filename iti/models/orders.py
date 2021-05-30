@@ -12,7 +12,7 @@ class orders(models.Model):
     name = fields.Many2one('res.partner')
     # channel_ids = fields.Many2many('mail.channel', 'mail_channel_profile_partner', 'partner_id', 'channel_id', copy="false")
     # meeting_ids = fields.Many2many('mail.meeting', 'mail_channel_profile_partner', 'partner_id', 'meeting_id', copy="false")
-    order_lines = fields.One2many("order_lines","order")
+    order_lines = fields.One2many("order_lines","orderItem")
     total = fields.Float(compute='_compute')
     date = fields.Date()
     

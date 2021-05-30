@@ -13,11 +13,38 @@
         </tree>
       </field>
     </record>
+
+
+       <record model="ir.ui.view" id="orders_calendar">
+      <field name="name">orders_calendar</field>
+      <field name="model">orders</field>
+      <field name="arch" type="xml">
+       <calendar string="calendar" date_start="date">
+    <field name="name"/>
+</calendar>
+      </field>
+    </record>
+
+      <record model="ir.ui.view" id="orders_graph">
+      <field name="name">orders_graph</field>
+      <field name="model">orders</field>
+      <field name="arch" type="xml">
+      <graph string="Total orders">
+    <field name="date"/>
+    <field name="name" type="measure"/>
+</graph>
+      </field>
+    </record>
+
+
        <record model="ir.ui.view" id="orders_form">
       <field name="name">orders_form</field>
       <field name="model">orders</field>
       <field name="arch" type="xml">
         <form>
+        <header>
+          <button name="%(launch_the_wizard)d"  string="copy" type="action" class="oe_highlight"/>
+        </header>
         <group>
           <group>
           <field name="name"/>
@@ -32,12 +59,14 @@
 
 
 
+
+
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="orders_action_window">
       <field name="name">orders</field>
       <field name="res_model">orders</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,calendar,graph</field>
     </record>
 
     <!-- server action to the one above -->

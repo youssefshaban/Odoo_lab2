@@ -26,8 +26,10 @@
     'data': [
         'security/ir.model.access.csv',
         'views/Medicine_views.xml',
+        'wizards/dialog.xml',
         'views/OrderLines_views.xml',
         'views/Orders_views.xml',
+        'reports/report.xml',
         'views/templates.xml',
     ],
 

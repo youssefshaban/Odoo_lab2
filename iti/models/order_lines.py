@@ -10,7 +10,7 @@ class order_lines(models.Model):
     name = fields.Many2one("medicine")
     qty = fields.Float()
     sub_total = fields.Float(compute='_compute')
-    order = fields.Many2one("orders")
+    orderItem = fields.Many2one("orders")
 
 
     @api.onchange('qty')

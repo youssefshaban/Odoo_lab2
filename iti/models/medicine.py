@@ -11,5 +11,3 @@ class medicine(models.Model):
     price = fields.Float()
     description = fields.Text()
     manufacturer = fields.Char()
-
- 
