@@ -1,21 +1,31 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+import json
+import codecs
 
+class Iti(http.Controller):
+    @http.route('/iti/iti/medicine/create', auth='public',type='json')
+    def index(self,csrf=False,**kw):
+            res = codecs.decode(http.request.httprequest.data, 'UTF-8')
+            parsed = json.loads(res)
+            result = http.request.env['medicine'].create({
+                'name':parsed['name'],
+                'price':parsed['price'],
+                'description':parsed['description'],
+                'manufacturer':parsed['manufacturer'],
+            })
+# 763e5bcee59a3563ae281c8306fdbbba1785fc79
 
-# class Iti(http.Controller):
-#     @http.route('/iti/iti/', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+    @http.route('/iti/iti/objects/', auth='public')
+    def list(self, **kw):
+        result = http.request.env['medicine'].search_read(
+            fields=[
+                'name',
+                'price',
+                'description',
+                'manufacturer'
+                ]
+            )
+        print(result)
+        return json.dumps(result)
 
-#     @http.route('/iti/iti/objects/', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('iti.listing', {
-#             'root': '/iti/iti',
-#             'objects': http.request.env['iti.iti'].search([]),
-#         })
-
-#     @http.route('/iti/iti/objects/<model("iti.iti"):obj>/', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('iti.object', {
-#             'object': obj
-#         })
